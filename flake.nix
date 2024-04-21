@@ -35,6 +35,9 @@
                     enable = true;
                     npm.enable = true;
                   };
+                  pre-commit.hooks = {
+                    editorconfig-checker.enable = true;
+                  };
                 }
               ];
             };

@@ -1,2 +1,9 @@
+# Nix
 .devenv
 .direnv
+.pre-commit-config.yaml
+
+# Javascript
+node_modules/
+public/
+.cache
