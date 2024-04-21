@@ -11,10 +11,9 @@
   <div class="container">
     <nav class="sidebar">
       <ul class="sidebar__menu">
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#setup">Setup</a></li>
-        <li><a href="#examples">Examples</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        {% for page in collections.docs %}
+          <li><a href="{{ page.page.url }}">{{ page.data.title }}</a></li>
+        {% endfor %}
       </ul>
     </nav>
     <div class="content">
