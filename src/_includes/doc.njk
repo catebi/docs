@@ -10,11 +10,7 @@
 <body>
   <div class="container">
     <nav class="sidebar">
-      <ul class="sidebar__menu">
-        {% for page in collections.docs %}
-          <li><a href="{{ page.page.url }}">{{ page.data.title }}</a></li>
-        {% endfor %}
-      </ul>
+      {% include "navigation.njk" %}
     </nav>
     <div class="content">
       <header class="content__header">
