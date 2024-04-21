@@ -31,13 +31,10 @@
               modules = [
                 {
                   # https://devenv.sh/reference/options/
-                  packages = [ pkgs.hello ];
-
-                  enterShell = ''
-                    hello
-                  '';
-
-                  processes.run.exec = "hello";
+                  languages.javascript = {
+                    enable = true;
+                    npm.enable = true;
+                  };
                 }
               ];
             };
