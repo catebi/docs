@@ -1,3 +1,4 @@
 {
-  "tags": ["docs"]
+  "tags": ["docs"],
+  "layout": "doc.njk"
 }

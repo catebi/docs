@@ -1,6 +1,5 @@
 ---
 title: "something cool"
-layout: layouts/doc.njk
 ---
 
 # Doc 2
