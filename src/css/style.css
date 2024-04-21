@@ -1,0 +1,88 @@
+/* Reset some basic elements */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Main container */
+.container {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 240px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+    transition: margin 0.3s ease; /* Smooth transition for toggling */
+}
+
+.sidebar.closed {
+    margin-left: -240px;
+}
+
+.sidebar__toggle {
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.sidebar__menu {
+    padding: 15px;
+}
+
+.sidebar__menu a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.sidebar__menu a:hover {
+    background-color: #ccc;
+}
+
+/* Content area styles */
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s ease; /* Smooth transition for content adjustment */
+}
+
+.content__header, .content__footer {
+    padding: 20px;
+    background: #eee;
+    text-align: center;
+    position: relative;
+}
+
+.content__toggle {
+    position: absolute;
+    left: 10px;
+}
+
+.content__main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        position: fixed; /* Absolute positioning for overlay effect */
+        z-index: 1000; /* Ensure it lays over the content */
+        margin-left: 0; /* Reset for mobile */
+    }
+}

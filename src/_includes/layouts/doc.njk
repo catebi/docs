@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ metadata.language }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{{ '/css/style.css' | url | safe }}">
+  <script src="{{ '/js/toggle-sidebar.js' | url | safe }}" defer></script>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <ul class="sidebar__menu">
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <header class="content__header">
+        <button class="content__toggle">Toggle Sidebar</button>
+        <h1>{{ title }}</h1>
+      </header>
+      <main class="content__main">
+        {{ content | safe }}
+      </main>
+      <footer class="content__footer">
+        © 2024 Documentation Site
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
+
