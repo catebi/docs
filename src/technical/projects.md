@@ -2,6 +2,7 @@
 title: "Catebi Projects"
 eleventyNavigation:
   key: projects
+  title: "Catebi Projects"
   parent: docs
 ---
 # Описание dev-проектов Catebi

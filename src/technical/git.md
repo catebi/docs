@@ -2,6 +2,7 @@
 title: "Getting started with Git"
 eleventyNavigation:
   key: git
+  title: "Getting started with Git"
   parent: docs
 ---
 
