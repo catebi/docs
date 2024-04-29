@@ -1,4 +1,5 @@
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation")
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy")
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/css/")
@@ -7,6 +8,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/js/")
 
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
   return {
     dir: {
