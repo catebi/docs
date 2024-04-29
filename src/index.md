@@ -1,6 +1,6 @@
 ---
 title: "index"
-layout: base.njk
+layout: doc.njk
 ---
 # Greeting
 
