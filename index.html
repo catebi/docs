@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>index</title>
-  <meta name="description" content="">
+  <link rel="stylesheet" href="/docs/css/style.css">
+  <script src="/docs/js/toggle-sidebar.js" defer=""></script>
 </head>
 <body>
-  <main>
-    <h1>Greeting</h1>
+  <div class="container">
+    <nav class="sidebar">
+      <ul class="sidebar__menu"><li><a href="/docs/technical/">docs</a><ul><li><a href="/docs/technical/doc1/">projects</a></li>
+<li><a href="/docs/technical/doc2/">doc1</a></li></ul></li></ul>
+
+    </nav>
+    <div class="content">
+      <header class="content__header">
+        <button class="content__toggle">Toggle Sidebar</button>
+        <h1>index</h1>
+      </header>
+      <main class="content__main">
+        <h1>Greeting</h1>
 <p>Hi!</p>
 
-  </main>
+      </main>
+      <footer class="content__footer">
+  © 2024 Documentation Site
+</footer>
+
+    </div>
+  </div>
 </body>
 </html>
+

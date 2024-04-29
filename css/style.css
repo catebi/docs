@@ -56,6 +56,12 @@ body, h1, h2, p, ul, li {
     transition: margin-left 0.3s ease; /* Smooth transition for content adjustment */
 }
 
+.content :is(h1, h2, p, ul, li) {
+    margin: revert;
+    padding: revert;
+    list-style: revert;
+}
+
 .content__header, .content__footer {
     padding: 20px;
     background: #eee;
