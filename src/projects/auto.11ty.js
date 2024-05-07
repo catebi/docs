@@ -4,7 +4,8 @@ module.exports.data = {
   pagination: {
     data: "repos",
     size: 1,
-    alias: "repo"
+    alias: "repo",
+    addAllPagesToCollections: true,
   },
   repos: [
     "Catebi.Api",
