@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Improvements</title>
+  <link rel="stylesheet" href="/docs/css/style.css">
+  <link rel="stylesheet" href="/docs/css/variables.css">
+  <script src="/docs/js/toggle-sidebar.js" defer=""></script>
+</head>
+<body class="light">
+  <div class="container">
+    <nav class="sidebar">
+      <ul class="sidebar__menu"><li><a href="/docs/">index</a></li>
+<li><a href="/docs/planning/">Planning</a><ul><li><a href="/docs/planning/git/">Database Improvements</a></li></ul></li>
+<li><a href="/docs/projects/">Project Docs</a><ul><li><a href="/docs/projects/catebi-api/">Catebi.Api</a></li>
+<li><a href="/docs/projects/freeganbot/">FreeganBot</a></li>
+<li><a href="/docs/projects/wordpress-catebige/">Wordpress.Catebige</a></li></ul></li>
+<li><a href="/docs/technical/">Technical Docs</a><ul><li><a href="/docs/planning/projects/">Catebi Projects</a></li>
+<li><a href="/docs/technical/git/">Getting started with Git</a></li>
+<li><a href="/docs/technical/projects/">Catebi Projects</a></li></ul></li></ul>
+
+    </nav>
+    <div class="content">
+      <header class="content__header">
+        <button class="content__toggle">Toggle Sidebar</button>
+        <h1>Database Improvements</h1>
+      </header>
+      <main class="content__main">
+        <h1>Database Improvements</h1>
+<h2>Problem Statement</h2>
+<ul>
+<li>БД (постгрес) крутится на VPSке (точно?)</li>
+<li>Бекапов нет</li>
+<li>Бекапы не тестируются</li>
+<li>Нет миграций</li>
+<li>Нет провиженинга (скрипта для пересоздания базы)</li>
+<li>Нет простого способа создать локальную БД для тестирования</li>
+</ul>
+<p>Из этого вытекает следующая проблема: <strong>любое действие с базой это потенциальный риск</strong>.</p>
+<h2>Как Улучшить</h2>
+<p>Простой способ улучшить ситуацию - это запихнуть постгрес в <strong>докер</strong>. Самое главное, что он нам даст - это чистая база, которую никто не трогал, а также простой способ очистить базу.</p>
+<p>У этого подхода есть плюсы и минусы:</p>
+<ul>
+<li>(+) Пересоздать базу (=протестировать провиженинг, миграции и бекапы) очень просто</li>
+<li>(+) Можно запустить две базы рядом (например, для разработки на двух разных ветках)</li>
+<li>(+) У нас будет локальное окружение для разработки</li>
+<li>(-) Сложнее взаимодействовать с базой, в т.ч. делать и восстанавливать бекапы
+<ul>
+<li>(+) На самом деле, отличий минимум - можно использовать все те же <code>pg_*</code> команды</li>
+<li>(+) Избавляемся от ненужной абстракции - больше нет &quot;локальной&quot; и &quot;удаленной&quot; БД, всегда только &quot;удаленная&quot; БД</li>
+</ul>
+</li>
+<li>(-) Придется мигрировать production
+<ul>
+<li>(+) Это все равно придется делать</li>
+<li>(+) В идеале, миграция будет выглядеть так: <code>systemctl disable --now postgres.service &amp;&amp; systemctl enable --now postgres-docker.service</code></li>
+<li>(-) Придется писать systemd unit для запуска БД
+<ul>
+<li>(+) По большей части он прост: нам нужно только запустить <code>docker compose up</code></li>
+<li>(-) Возможно, для упрощения жизни придется добавлять вещи сложнее: хелсчеки, рестарты и т.д.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>План по Миграции</h2>
+<p>Пишем <code>compose.yaml</code> (не протестировано):</p>
+<pre><code class="language-yaml">services:
+  postgres:
+    image: &quot;postgres:16&quot;
+    restart: always
+    secrets:
+      - postgres-password
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-password
+    # В локальной папке migrations будут *.sql и *.sh файлы, которые будут выполнены при первом запуске
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+      - data:/var/lib/postgresql/data
+    expose:
+      - &quot;5432&quot;
+
+secrets:
+  postgres-password:
+    # Этот файл добавить в .gitignore
+    file: ./postgres-password
+
+volumes:
+  data:
+</code></pre>
+<p>Пишем systemd unit (не протестировано):</p>
+<pre><code>[Unit]
+After=docker.service
+
+[Service]
+ExecStart=/bin/docker compose -f /home/user/project/compose.yaml up
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+      </main>
+      <footer class="content__footer">
+  © 2024 Documentation Site
+  <a href="https://github.com/catebi/docs/blob/main/./src/planning/git.md">Edit this page on GitHub</a>
+</footer>
+
+    </div>
+  </div>
+</body>
+</html>
+
