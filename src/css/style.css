@@ -8,7 +8,7 @@ body, h1, h2, p, ul, li {
 /* Main container */
 .container {
     display: flex;
-    height: 100vh;
+    overflow-x: clip;
     font-family: Arial, sans-serif;
 }
 
@@ -52,6 +52,7 @@ body, h1, h2, p, ul, li {
 .content {
     flex-grow: 1;
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     transition: margin-left 0.3s ease; /* Smooth transition for content adjustment */
 }
@@ -78,6 +79,16 @@ body, h1, h2, p, ul, li {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    overflow-wrap: break-word;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    max-width: 700px;
+}
+
+code {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem;
 }
 
 /* Responsive adjustments */
