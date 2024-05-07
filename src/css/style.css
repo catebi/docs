@@ -16,7 +16,6 @@ body, h1, h2, p, ul, li {
 .sidebar {
     overflow-y: auto;
     transition: margin 0.3s ease; /* Smooth transition for toggling */
-    text-decoration: none;
     width: var(--sidebar-width);
     color: var(--sidebar-fg);
     background-color: var(--sidebar-bg);
@@ -35,18 +34,29 @@ body, h1, h2, p, ul, li {
     background: #ddd;
 }
 
-.sidebar__menu {
-    padding: 15px;
+.sidebar__section {
+    list-style: none outside none;
+    padding-inline-start: 0;
+    line-height: 2.2em;
 }
 
-.sidebar__menu a {
+.sidebar__section, .sidebar__entry ul, li a {
     display: block;
     padding: 10px;
     text-decoration: none;
     color: var(--sidebar-fg);
 }
 
-.sidebar__menu a:hover {
+.sidebar__section a:hover {
+    color: var(--sidebar-active);
+}
+
+.sidebar__entry {
+    line-height: 1.5em;
+    margin-block-start: 0.6em;
+}
+
+.sidebar__entry--active {
     color: var(--sidebar-active);
 }
 
@@ -91,6 +101,9 @@ code {
     display: block;
     overflow-x: auto;
     padding: 1rem;
+    font-size: var(--code-font-size);
+    background: #f6f7f6;
+    color: #000;
 }
 
 /* Responsive adjustments */

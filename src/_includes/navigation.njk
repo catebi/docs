@@ -1,1 +1,1 @@
-{{ collections.all | eleventyNavigation | eleventyNavigationToHtml({ listClass: "sidebar__menu" }) | safe }}
+{{ collections.all | eleventyNavigation | eleventyNavigationToHtml({ listClass: "sidebar__section", listItemClass: "sidebar__entry", listItemHasChildrenClass: "sidebar__section", activeListItemClass: "sidebar__entry--active", activeKey: eleventyNavigation.key }) | safe }}
