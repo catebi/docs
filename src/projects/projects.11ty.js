@@ -27,6 +27,6 @@ module.exports.render = async function (data) {
 
   return await this.renderTemplate(
     readme,
-    "njk,md"
+    "md"
   )
 };
