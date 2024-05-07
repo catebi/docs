@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreeganBot</title>
+  <link rel="stylesheet" href="/docs/css/style.css">
+  <link rel="stylesheet" href="/docs/css/variables.css">
+  <script src="/docs/js/toggle-sidebar.js" defer=""></script>
+</head>
+<body class="light">
+  <div class="container">
+    <nav class="sidebar">
+      <ul class="sidebar__menu"><li><a href="/docs/">index</a></li>
+<li><a href="/docs/projects/">Project Docs</a><ul><li><a href="/docs/projects/catebi-api/">Catebi.Api</a></li>
+<li><a href="/docs/projects/freeganbot/">FreeganBot</a></li>
+<li><a href="/docs/projects/wordpress-catebige/">Wordpress.Catebige</a></li></ul></li>
+<li><a href="/docs/technical/">Technical Docs</a><ul><li><a href="/docs/technical/git/">Getting started with Git</a></li>
+<li><a href="/docs/technical/projects/">Catebi Projects</a></li></ul></li></ul>
+
+    </nav>
+    <div class="content">
+      <header class="content__header">
+        <button class="content__toggle">Toggle Sidebar</button>
+        <h1>FreeganBot</h1>
+      </header>
+      <main class="content__main">
+        <h1>FreeganBot</h1>
+<p>Telegram bot to search for donations in chats and channels</p>
+<h2>Install Guide</h2>
+<h3>Prerequisites</h3>
+<ol>
+<li>
+<p><strong>Python Installation</strong>: This script requires Python, specifically version 3.10, due to compatibility with libraries
+used. Here are the steps to install Python 3.10:</p>
+<ul>
+<li>
+<p><strong>Ubuntu/Linux</strong>:</p>
+<pre><code class="language-bash">sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.10 python3.10-venv python3.10-dev
+</code></pre>
+</li>
+<li>
+<p><strong>Windows</strong>:
+Download and install Python 3.10 from <a href="https://www.python.org/downloads/windows/">Python Releases for Windows</a>. During installation, make sure to check the
+option 'Add Python 3.10 to PATH'.</p>
+</li>
+<li>
+<p><strong>macOS</strong>:
+Install Homebrew if it's not already installed:</p>
+<pre><code class="language-bash">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+</code></pre>
+<p>Then, install Python 3.10 using Homebrew:</p>
+<pre><code class="language-bash">brew install python@3.10
+brew link --overwrite python@3.10
+</code></pre>
+</li>
+</ul>
+<p>Verify the installation by checking the Python version:</p>
+<pre><code class="language-bash">python3.10 --version
+</code></pre>
+</li>
+<li>
+<p><strong>Setting Up Venv</strong>: First, create <a href="https://docs.python.org/3/library/venv.html">venv</a> for the project with this
+command:</p>
+<pre><code class="language-bash">python3.10 -m venv venv
+</code></pre>
+<p>Next, activate venv:</p>
+<pre><code class="language-bash">source venv/bin/activate
+</code></pre>
+</li>
+<li>
+<p><strong>Install Dependencies</strong>: install all required dependencies with
+this <a href="https://pip.pypa.io/en/stable/user_guide/">command</a>:</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+</li>
+<li>
+<p><strong>Telegram API Credentials</strong>: You need a Telegram API <code>api_id</code> and <code>api_hash</code>. These are obtained by registering your
+application on Telegram’s website. Here's how:</p>
+<ul>
+<li>Go to <a href="https://my.telegram.org">my.telegram.org</a>.</li>
+<li>Log in with your Telegram account.</li>
+<li>Click on 'API development tools' and fill out the form to create a new application.</li>
+<li>Once created, you'll receive your <code>api_id</code> and <code>api_hash</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Internet Connection</strong>: Since the script interacts with Telegram's servers, an active internet connection is
+required.</p>
+</li>
+<li>
+<p><strong>A Telegram Account</strong>: The script will run under your Telegram account, so ensure you have access to the account you
+intend to use.</p>
+</li>
+<li>
+<p><strong>Environment Variables</strong>: copy <code>env.example</code> content into <code>.env</code> file with this command:</p>
+<pre><code class="language-bash">[ ! -f .env ] &amp;&amp; cp env.example .env
+</code></pre>
+<p>And insert these variables into your <code>.env</code> file:</p>
+<ul>
+<li><code>ENV</code> is prod/dev (dev is default).</li>
+<li><code>TELEGRAM_API_ID</code> is from <a href="https://my.telegram.org">my.telegram.org</a> <code>api_id</code>.</li>
+<li><code>TELEGRAM_API_HASH</code> is from <a href="https://my.telegram.org">my.telegram.org</a> <code>api_hash</code>.</li>
+<li><code>TELEGRAM_CHAT_SEND_TO</code> is Telegram Username where bot should send donation messages to (for dev purposes it's
+usually your test chat).</li>
+</ul>
+</li>
+<li>
+<p><strong>Setting up your test environment</strong>: You should test the bot functions with your test chat. Here's how to do that:</p>
+<ul>
+<li>Create a public chat or channel in Telegram</li>
+<li>Add <a href="https://t.me/freegan_catebi_leshiy_bot">@freegan_catebi_leshiy_bot</a> into your chat</li>
+<li>Give it Admin role and make sure bot is allowed to send messages in the chat</li>
+</ul>
+</li>
+</ol>
+<h3>Additional Description</h3>
+<ul>
+<li>At the first launch, in the terminal you will need to enter the phone number to which your Telegram account is linked</li>
+<li>You can read about TelegramClient methods <a href="https://docs.telethon.dev/en/stable/modules/client.html">here</a></li>
+<li>When the program runs, it creates <code>catebi_freegan.session</code> file with information about the session, so that in the
+future do not re-enter the data (in general, user (bot) data can be written in the code)</li>
+</ul>
+<h3>Troubleshooting</h3>
+<ul>
+<li>in the Chat library - a small group chat (group) - and Channel are different concepts, and the message reference part
+of the code only works with Channel. It's hard to encounter anything in nature that isn't a channel and causes an
+error unless you create a small closed group and send messages to yourself. Anything with a public username is already
+a channel.</li>
+<li>The user or bot must be a member of the group from which it is planned to send messages.</li>
+</ul>
+<h2>Bot Config</h2>
+<p>Bot config is <code>config.yaml</code> file.</p>
+<p>Config structure:</p>
+<pre><code class="language-yaml">chats:
+  - &lt;telegramChatUrl1&gt;
+  - &lt;telegramChatUrl2&gt;
+
+sys_logging:
+  developers: &quot;@&lt;telegramAccount1Name&gt;, @&lt;telegramAccount2Name&gt;&quot;
+  topic_id: &lt;telegramChatTopicId&gt;
+
+groups:
+  - name: 'group 1'
+    keywords:
+      - 'миска'
+    include_keywords:
+      - 'кот'
+    exclude_keywords:
+      - 'купить'
+</code></pre>
+<p>Configs keys descriptions:</p>
+<ul>
+<li><code>chats</code> (only in config.dev.yaml for testing purposes): list of links where bot looks for donation messages. On the
+prod environment, donation chats list is returned from catebi API request.</li>
+<li><code>sys_logging</code>: settings for bot logs, where <code>developers</code> - list of usernames to ping about some logs, <code>topic_id</code>-
+Telegram chat topic where bot sends logs to</li>
+<li><code>groups</code>: a bunch of keywords on a specific sub-topic with filters, where <code>name</code> - group name, <code>keywords</code> - list of
+keywords about what we are looking for in donation messages, <code>include_keywords</code> - list of keywords that must be in a
+message to filter irrelevant occurrences of <code>keywords</code>, <code>exclude_keywords</code> - list of keywords that must NOT be in a
+donation message.</li>
+</ul>
+<p>If a message contains both <code>include_keywords</code> and <code>exclude_keywords</code> entries, <code>exclude_keywords</code> entry has the highest
+priority so this message must NOT be sent.</p>
+<p>Important! Content in <code>include_keywords</code> and <code>exclude_keywords</code> should be in lemmatized form. You can get word
+lemmatization form in <code>freegan_nlp.ipynb</code>. just insert text for lemmatization in cell with text variable:</p>
+<pre><code class="language-python">text = &quot;продаю&quot;
+</code></pre>
+<p>And run all cells in notebook. Look for this cell:</p>
+<pre><code class="language-python">lemmatized_text = process_text(text)
+lemmatized_text
+</code></pre>
+<p>This cell output shows the word lemmatization form. For instance:</p>
+<pre><code>'продавать'
+</code></pre>
+
+      </main>
+      <footer class="content__footer">
+  © 2024 Documentation Site
+</footer>
+
+    </div>
+  </div>
+</body>
+</html>
+

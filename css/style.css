@@ -8,20 +8,22 @@ body, h1, h2, p, ul, li {
 /* Main container */
 .container {
     display: flex;
-    height: 100vh;
+    overflow-x: clip;
     font-family: Arial, sans-serif;
 }
 
 /* Sidebar styles */
 .sidebar {
-    width: 240px;
-    background-color: #f4f4f4;
     overflow-y: auto;
     transition: margin 0.3s ease; /* Smooth transition for toggling */
+    text-decoration: none;
+    width: var(--sidebar-width);
+    color: var(--sidebar-fg);
+    background-color: var(--sidebar-bg);
 }
 
 .sidebar.closed {
-    margin-left: -240px;
+    margin-left: calc(var(--sidebar-width) * (-1));
 }
 
 .sidebar__toggle {
@@ -29,8 +31,8 @@ body, h1, h2, p, ul, li {
     width: 100%;
     text-align: left;
     border: none;
-    background: #ddd;
     cursor: pointer;
+    background: #ddd;
 }
 
 .sidebar__menu {
@@ -40,18 +42,19 @@ body, h1, h2, p, ul, li {
 .sidebar__menu a {
     display: block;
     padding: 10px;
-    color: #333;
     text-decoration: none;
+    color: var(--sidebar-fg);
 }
 
 .sidebar__menu a:hover {
-    background-color: #ccc;
+    color: var(--sidebar-active);
 }
 
 /* Content area styles */
 .content {
     flex-grow: 1;
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     transition: margin-left 0.3s ease; /* Smooth transition for content adjustment */
 }
@@ -64,7 +67,7 @@ body, h1, h2, p, ul, li {
 
 .content__header, .content__footer {
     padding: 20px;
-    background: #eee;
+    background: var(--bg);
     text-align: center;
     position: relative;
 }
@@ -78,6 +81,16 @@ body, h1, h2, p, ul, li {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    overflow-wrap: break-word;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    max-width: 700px;
+}
+
+code {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem;
 }
 
 /* Responsive adjustments */
