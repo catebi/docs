@@ -1,9 +1,6 @@
 ---
 title: "Catebi Projects"
-eleventyNavigation:
-  key: projects
-  title: "Catebi Projects"
-  parent: docs
+parent: technical-docs
 ---
 # Описание dev-проектов Catebi
 

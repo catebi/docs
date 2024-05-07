@@ -15,6 +15,10 @@ module.exports.data = {
     return `projects/${this.slugify(data.repo)}/index.html`;
   },
   layout: "doc.njk",
+  parent: "project-docs",
+  eleventyComputed: {
+    title: (data) => data.repo,
+  },
 };
 
 module.exports.render = async function (data) {

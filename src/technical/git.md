@@ -1,9 +1,6 @@
 ---
 title: "Getting started with Git"
-eleventyNavigation:
-  key: git
-  title: "Getting started with Git"
-  parent: docs
+parent: technical-docs
 ---
 
 ### Вводная Часть: История и Цели Git
