@@ -4,32 +4,6 @@
     font-family: Arial, sans-serif;
 }
 
-/* Sidebar styles */
-.navigation-sidebar {
-    overflow-y: auto;
-    transition: margin 0.3s ease; /* Smooth transition for toggling */
-    width: var(--sidebar-width);
-    color: var(--sidebar-fg);
-    background-color: var(--sidebar-bg);
-
-    &.-closed {
-        margin-left: calc(var(--sidebar-width) * (-1));
-    }
-    > .section {
-        list-style: none outside none;
-        padding-inline-start: 0;
-        line-height: 2.2em;
-    }
-    > .entry {
-        line-height: 1.5em;
-        margin-block-start: 0.6em;
-
-        &.-active {
-            color: var(--sidebar-active);
-        }
-    }
-}
-
 .main-header > .toggle {
     padding: 10px;
     width: 100%;
@@ -38,17 +12,6 @@
     cursor: pointer;
     background: #ddd;
     left: 10px;
-}
-
-.section, .entry ul, li a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: var(--sidebar-fg);
-}
-
-.navigation-sidebar > .section a:hover {
-    color: var(--sidebar-active);
 }
 
 /* Content area styles */
@@ -93,11 +56,5 @@
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-    }
-    .main-sidebar {
-        width: 100%;
-        position: fixed; /* Absolute positioning for overlay effect */
-        z-index: 1000; /* Ensure it lays over the content */
-        margin-left: 0; /* Reset for mobile */
     }
 }

@@ -1,0 +1,52 @@
+.navigation-sidebar {
+    overflow-y: auto;
+    transition: margin 0.3s ease; /* Smooth transition for toggling */
+    width: var(--sidebar-width);
+    color: var(--sidebar-fg);
+    background-color: var(--sidebar-bg);
+
+    &.-closed {
+        margin-left: calc(var(--sidebar-width) * (-1));
+    }
+}
+
+.chapters-list {
+    list-style: none outside none;
+
+    > .chapter {
+        line-height: 2.2em;
+        font-weight: bold;
+
+        &.-active a {
+            color: var(--sidebar-active);
+        }
+        a {
+            text-decoration: none;
+            color: var(--sidebar-fg);
+        }
+        a:hover {
+            color: var(--sidebar-active);
+        }
+    }
+    > .section {
+        ul {
+            list-style: none outside none;
+            line-height: initial;
+            font-weight: initial;
+        }
+
+        > .chapter {
+            margin-block-start: 0.6em;
+        }
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navigation-sidebar {
+        width: 100%;
+        position: fixed; /* Absolute positioning for overlay effect */
+        z-index: 1000; /* Ensure it lays over the content */
+        margin-left: 0; /* Reset for mobile */
+    }
+}
