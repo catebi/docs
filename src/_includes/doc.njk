@@ -10,15 +10,15 @@
 </head>
 <body class="light">
   <div class="container">
-    <nav class="sidebar">
+    <nav class="navigation-sidebar">
       {% include "navigation.njk" %}
     </nav>
     <div class="content">
-      <header class="content__header">
-        <button class="content__toggle">Toggle Sidebar</button>
+      <header class="main-header">
+        <button class="toggle">Toggle Sidebar</button>
         <h1>{{ title }}</h1>
       </header>
-      <main class="content__main">
+      <main class="main-content">
         {{ content | safe }}
       </main>
       {% include "footer.njk" %}

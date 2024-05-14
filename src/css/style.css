@@ -1,67 +1,58 @@
-/* Reset some basic elements */
-body, h1, h2, p, ul, li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
 /* Main container */
 .container {
     display: flex;
-    overflow-x: clip;
     font-family: Arial, sans-serif;
 }
 
 /* Sidebar styles */
-.sidebar {
+.navigation-sidebar {
     overflow-y: auto;
     transition: margin 0.3s ease; /* Smooth transition for toggling */
     width: var(--sidebar-width);
     color: var(--sidebar-fg);
     background-color: var(--sidebar-bg);
+
+    &.-closed {
+        margin-left: calc(var(--sidebar-width) * (-1));
+    }
+    > .section {
+        list-style: none outside none;
+        padding-inline-start: 0;
+        line-height: 2.2em;
+    }
+    > .entry {
+        line-height: 1.5em;
+        margin-block-start: 0.6em;
+
+        &.-active {
+            color: var(--sidebar-active);
+        }
+    }
 }
 
-.sidebar.closed {
-    margin-left: calc(var(--sidebar-width) * (-1));
-}
-
-.sidebar__toggle {
+.main-header > .toggle {
     padding: 10px;
     width: 100%;
     text-align: left;
     border: none;
     cursor: pointer;
     background: #ddd;
+    left: 10px;
 }
 
-.sidebar__section {
-    list-style: none outside none;
-    padding-inline-start: 0;
-    line-height: 2.2em;
-}
-
-.sidebar__section, .sidebar__entry ul, li a {
+.section, .entry ul, li a {
     display: block;
     padding: 10px;
     text-decoration: none;
     color: var(--sidebar-fg);
 }
 
-.sidebar__section a:hover {
-    color: var(--sidebar-active);
-}
-
-.sidebar__entry {
-    line-height: 1.5em;
-    margin-block-start: 0.6em;
-}
-
-.sidebar__entry--active {
+.navigation-sidebar > .section a:hover {
     color: var(--sidebar-active);
 }
 
 /* Content area styles */
-.content {
+.main-content {
     flex-grow: 1;
     display: flex;
     overflow-y: auto;
@@ -69,25 +60,14 @@ body, h1, h2, p, ul, li {
     transition: margin-left 0.3s ease; /* Smooth transition for content adjustment */
 }
 
-.content :is(h1, h2, p, ul, li) {
-    margin: revert;
-    padding: revert;
-    list-style: revert;
-}
-
-.content__header, .content__footer {
+.main-footer {
     padding: 20px;
     background: var(--bg);
     text-align: center;
     position: relative;
 }
 
-.content__toggle {
-    position: absolute;
-    left: 10px;
-}
-
-.content__main {
+.main-content {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
@@ -95,15 +75,18 @@ body, h1, h2, p, ul, li {
     margin-inline-start: auto;
     margin-inline-end: auto;
     max-width: 700px;
-}
 
-code {
-    display: block;
-    overflow-x: auto;
-    padding: 1rem;
-    font-size: var(--code-font-size);
-    background: #f6f7f6;
-    color: #000;
+    code {
+        background: #f6f7f6;
+        color: #000;
+    }
+
+    pre > code {
+        display: block;
+        overflow-x: auto;
+        padding: 1rem;
+        font-size: var(--code-font-size);
+    }
 }
 
 /* Responsive adjustments */
@@ -111,7 +94,7 @@ code {
     .container {
         flex-direction: column;
     }
-    .sidebar {
+    .main-sidebar {
         width: 100%;
         position: fixed; /* Absolute positioning for overlay effect */
         z-index: 1000; /* Ensure it lays over the content */
