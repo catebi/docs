@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var toggle = document.querySelector('.content__toggle');
-    var sidebar = document.querySelector('.sidebar');
+    var toggle = document.querySelector('.toggle');
+    var sidebar = document.querySelector('.navigation-sidebar');
 
     toggle.addEventListener('click', function() {
-        sidebar.classList.toggle('closed');
+        sidebar.classList.toggle('-closed');
     });
 });
