@@ -38,3 +38,13 @@
         ├── projects.md
         └── technical.11tydata.json   # 11ty data for this chapter
 ```
+
+## CSS Conventions
+
+- For CSS organization, [Reasonable CSS](https://ricostacruz.com/rscss/) is used
+- Currently, no CSS pre- or post-processing is done, but it could change
+- If CSS pre- or post-processing will be enabled, it will be hooked up into 11ty build process
+- No asset bundling is done; instead, CSS includes are part of the HTML template for the page
+- CSS is not minified
+- CSS is preferably done for each component in a separate file
+- CSS styling is taken from [mdbook](https://rust-lang.github.io/mdBook/index.html)
