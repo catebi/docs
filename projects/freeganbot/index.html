@@ -16,7 +16,8 @@
 <li class="chapter section"><a href="/docs/planning/">Planning</a><ul><li class="chapter"><a href="/docs/planning/database/">Database Improvements</a></li></ul></li>
 <li class="chapter section"><a href="/docs/projects/">Project Docs</a><ul><li class="chapter"><a href="/docs/projects/catebi-api/">Catebi.Api</a></li>
 <li class="chapter -active"><a href="/docs/projects/freeganbot/">FreeganBot</a></li>
-<li class="chapter"><a href="/docs/projects/wordpress-catebige/">Wordpress.Catebige</a></li></ul></li>
+<li class="chapter"><a href="/docs/projects/wordpress-catebige/">Wordpress.Catebige</a></li>
+<li class="chapter"><a href="/docs/projects/docs/">docs</a></li></ul></li>
 <li class="chapter section"><a href="/docs/technical/">Technical Docs</a><ul><li class="chapter"><a href="/docs/technical/git/">Getting started with Git</a></li>
 <li class="chapter"><a href="/docs/technical/projects/">Catebi Projects</a></li></ul></li></ul>
 
@@ -33,53 +34,63 @@
 <h3>Prerequisites</h3>
 <ol>
 <li>
-<p>[x] <strong>Python Installation</strong>: This script requires Python, specifically version 3.13, due to compatibility with libraries
-used. Here are the steps to install Python 3.13:</p>
+<p><strong>Python Installation</strong>: This script requires Python, specifically version 3.12, due to compatibility with libraries
+used. Here are the steps to install Python 3.12:</p>
 <ul>
 <li>
 <p><strong>Ubuntu/Linux</strong>:</p>
 <pre><code class="language-bash">sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.13 python3.13-venv python3.13-dev
+sudo apt install python3.12 python3.12-venv python3.12-dev
 </code></pre>
 </li>
 <li>
 <p><strong>Windows</strong>:
-Download and install Python 3.13 from <a href="https://www.python.org/downloads/windows/">Python Releases for Windows</a>. During installation, make sure to check the
-option 'Add Python 3.13 to PATH'.</p>
+Download and install Python 3.12 from <a href="https://www.python.org/downloads/windows/">Python Releases for Windows</a>.
+During installation, make sure to check the
+option 'Add Python 3.12 to PATH'.</p>
 </li>
 <li>
 <p><strong>macOS</strong>:
 Install Homebrew if it's not already installed:</p>
 <pre><code class="language-bash">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
 </code></pre>
-<p>Then, install Python 3.13 using Homebrew:</p>
-<pre><code class="language-bash">brew install python@3.13
-brew link --overwrite python@3.13
+<p>Then, install Python 3.12 using Homebrew:</p>
+<pre><code class="language-bash">brew install python@3.12
+brew link --overwrite python@3.12
 </code></pre>
 </li>
 </ul>
 <p>Verify the installation by checking the Python version:</p>
-<pre><code class="language-bash">python3.13 --version
+<pre><code class="language-bash">python3.12 --version
 </code></pre>
 </li>
 <li>
-<p>[x] <strong>Setting Up Venv</strong>: First, create <a href="https://docs.python.org/3/library/venv.html">venv</a> for the project with this
+<p><strong>Setting Up Venv</strong>: First, create <a href="https://docs.python.org/3/library/venv.html">venv</a> for the project with this
 command:</p>
-<pre><code class="language-bash">python3.13 -m venv venv
+<pre><code class="language-bash">python3.12 -m venv venv
 </code></pre>
 <p>Next, activate venv:</p>
 <pre><code class="language-bash">source venv/bin/activate
 </code></pre>
 </li>
 <li>
-<p>[x] <strong>Install Dependencies</strong>: install all required dependencies with
+<p><strong>Install Dependencies</strong>: install all required dependencies with
 this <a href="https://pip.pypa.io/en/stable/user_guide/">command</a>:</p>
 <pre><code class="language-bash">pip install -r requirements.txt
 </code></pre>
 </li>
 <li>
-<p>[x] <strong>Telegram API Credentials</strong>: You need a Telegram API <code>api_id</code> and <code>api_hash</code>. These are obtained by registering your
+<p><strong>Install Docker and Docker Compose</strong>: install Docker with <a href="https://docs.docker.com/engine/install/ubuntu/">guide</a>
+and Docker Compose with this <a href="https://docs.docker.com/compose/install/">guide</a>.</p>
+</li>
+<li>
+<p><strong>Run project</strong>: run this docker compose command:</p>
+<pre><code class="language-bash">docker compose up --build
+</code></pre>
+</li>
+<li>
+<p><strong>Telegram API Credentials</strong>: You need a Telegram API <code>api_id</code> and <code>api_hash</code>. These are obtained by registering your
 application on Telegram’s website. Here's how:</p>
 <ul>
 <li>Go to <a href="https://my.telegram.org">my.telegram.org</a>.</li>
@@ -89,15 +100,15 @@ application on Telegram’s website. Here's how:</p>
 </ul>
 </li>
 <li>
-<p>[x] <strong>Internet Connection</strong>: Since the script interacts with Telegram's servers, an active internet connection is
+<p><strong>Internet Connection</strong>: Since the script interacts with Telegram's servers, an active internet connection is
 required.</p>
 </li>
 <li>
-<p>[x] <strong>A Telegram Account</strong>: The script will run under your Telegram account, so ensure you have access to the account you
+<p><strong>A Telegram Account</strong>: The script will run under your Telegram account, so ensure you have access to the account you
 intend to use.</p>
 </li>
 <li>
-<p>[x] <strong>Environment Variables</strong>: copy <code>env.example</code> content into <code>.env</code> file with this command:</p>
+<p><strong>Environment Variables</strong>: copy <code>env.example</code> content into <code>.env</code> file with this command:</p>
 <pre><code class="language-bash">[ ! -f .env ] &amp;&amp; cp env.example .env
 </code></pre>
 <p>And insert these variables into your <code>.env</code> file:</p>
@@ -108,14 +119,15 @@ intend to use.</p>
 <li><code>TELEGRAM_CHAT_SEND_TO</code> is Telegram Chat ID where bot should send donation messages to (for dev purposes it's
 usually your test chat).</li>
 </ul>
-<p><strong>Attention</strong>! To get Chat ID, you should copy your public chat URL and insert it into &quot;CHAT_URL&quot; in <a href="utils/get_chat_id.py">get_chat_id</a> script.</p>
+<p><strong>Attention</strong>! To get Chat ID, you should copy your public chat URL and insert it into &quot;CHAT_URL&quot;
+in <a href="utils/get_chat_id.py">get_chat_id</a> script.</p>
 <p>Once you've done it, run the script. You see the output like:</p>
 <pre><code>Id for chat YOUR_CHAT_URL is -YOUR_CHAT_ID
 </code></pre>
 <p>Copy chat ID (exactly negative number!) into <code>TELEGRAM_CHAT_SEND_TO</code> env variable.</p>
 </li>
 <li>
-<p>[x] <strong>Setting up your test environment</strong>: You should test the bot functions with your test chat. Here's how to do that:</p>
+<p><strong>Setting up your test environment</strong>: You should test the bot functions with your test chat. Here's how to do that:</p>
 <ul>
 <li>Create a public chat or channel in Telegram</li>
 <li>Add <a href="https://t.me/freegan_catebi_leshiy_bot">@freegan_catebi_leshiy_bot</a> into your chat</li>

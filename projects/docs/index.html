@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>docs</title>
+  <link rel="stylesheet" href="/docs/css/style.css">
+  <link rel="stylesheet" href="/docs/css/variables.css">
+  <link rel="stylesheet" href="/docs/css/main-sidebar.css">
+  <script src="/docs/js/toggle-sidebar.js" defer=""></script>
+</head>
+<body class="light">
+  <div class="container">
+    <nav class="navigation-sidebar">
+      <ul class="chapters-list"><li class="chapter"><a href="/docs/">index</a></li>
+<li class="chapter section"><a href="/docs/planning/">Planning</a><ul><li class="chapter"><a href="/docs/planning/database/">Database Improvements</a></li></ul></li>
+<li class="chapter section"><a href="/docs/projects/">Project Docs</a><ul><li class="chapter"><a href="/docs/projects/catebi-api/">Catebi.Api</a></li>
+<li class="chapter"><a href="/docs/projects/freeganbot/">FreeganBot</a></li>
+<li class="chapter"><a href="/docs/projects/wordpress-catebige/">Wordpress.Catebige</a></li>
+<li class="chapter -active"><a href="/docs/projects/docs/">docs</a></li></ul></li>
+<li class="chapter section"><a href="/docs/technical/">Technical Docs</a><ul><li class="chapter"><a href="/docs/technical/git/">Getting started with Git</a></li>
+<li class="chapter"><a href="/docs/technical/projects/">Catebi Projects</a></li></ul></li></ul>
+
+    </nav>
+    <div class="content">
+      <header class="main-header">
+        <button class="toggle">Toggle Sidebar</button>
+        <h1>docs</h1>
+      </header>
+      <main class="main-content">
+        <h1>README</h1>
+<h2>Directory Structure</h2>
+<pre><code>.
+├── eleventy.config.js                # Top-level 11ty configuration file
+├── flake.lock
+├── flake.nix
+├── LICENSE
+├── package.json                      # npm packages file
+├── package-lock.json                 # npm packages lock file
+├── README.md
+└── src
+    ├── css                           # Directory with CSS to use on website
+    │   ├── main-sidebar.css
+    │   ├── style.css
+    │   └── variables.css
+    ├── _data                         # Directory for global 11ty data that is used as base for everything
+    │   └── eleventyComputed.js       # Computed 11ty data (highest priority)
+    ├── _includes                     # 11ty templates
+    │   ├── doc.njk                   # General template
+    │   ├── footer.njk                # Page footer
+    │   └── navigation.njk            # Navigation menu
+    ├── index.md                      # Main page
+    ├── js                            # Client-side JS scripts
+    │   └── toggle-sidebar.js
+    ├── planning                      # &quot;Planning&quot; chapter
+    │   ├── database.md
+    │   ├── index.md
+    │   └── planning.11tydata.json    # 11ty data for this chapter
+    ├── projects                      # &quot;Projects&quot; chapter
+    │   ├── auto.11ty.js              # JS script that creates pages for this chapter
+    │   └── index.md
+    └── technical                     # &quot;Technical&quot; chapter
+        ├── git.md
+        ├── index.md
+        ├── projects.md
+        └── technical.11tydata.json   # 11ty data for this chapter
+</code></pre>
+<h2>CSS Conventions</h2>
+<ul>
+<li>For CSS organization, <a href="https://ricostacruz.com/rscss/">Reasonable CSS</a> is used</li>
+<li>Currently, no CSS pre- or post-processing is done, but it could change</li>
+<li>If CSS pre- or post-processing will be enabled, it will be hooked up into 11ty build process</li>
+<li>No asset bundling is done; instead, CSS includes are part of the HTML template for the page</li>
+<li>CSS is not minified</li>
+<li>CSS is preferably done for each component in a separate file</li>
+<li>CSS styling is taken from <a href="https://rust-lang.github.io/mdBook/index.html">mdbook</a></li>
+</ul>
+<h2>Caveats</h2>
+<ul>
+<li>Computed 11ty data always takes priority. Above global and local data. No matter where the definition for computing data lies. Compute data always takes biggest priority</li>
+</ul>
+
+      </main>
+      <footer class="main-footer">
+  © 2024 Documentation Site
+  <a href="https://github.com/catebi/docs/blob/main/./src/projects/auto.11ty.js">Edit this page on GitHub</a>
+</footer>
+
+    </div>
+  </div>
+</body>
+</html>
+
