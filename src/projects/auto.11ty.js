@@ -11,6 +11,7 @@ module.exports.data = {
     "Catebi.Api",
     "FreeganBot",
     "Wordpress.Catebige",
+    "docs",
   ],
   permalink: function (data) {
     return `projects/${this.slugify(data.repo)}/index.html`;
