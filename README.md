@@ -48,3 +48,7 @@
 - CSS is not minified
 - CSS is preferably done for each component in a separate file
 - CSS styling is taken from [mdbook](https://rust-lang.github.io/mdBook/index.html)
+
+## Caveats
+
+- Computed 11ty data always takes priority. Above global and local data. No matter where the definition for computing data lies. Compute data always takes biggest priority
